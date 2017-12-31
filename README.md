@@ -1,2 +1,3 @@
-# Spark-ETL_Spark-Python
-ETL pipeline using pyspark (Spark - Python)
+# Apache Spark with Python
+
+### My Spark practice notes.
