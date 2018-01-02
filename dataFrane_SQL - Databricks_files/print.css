@@ -1,0 +1,274 @@
+/*
+ * Memo:
+ * Unfortunately, we use "!important" in our non-print CSS + we
+ * use the occasional inline style; so !important is used in
+ * print.css to override any styles found in other prior stylesheets
+ * (amy
+ *
+ * TODO:
+ * - unfocus / unhover mouse upon hitting print button / command
+ * - fix arbitrary variables (numbers, colors, inherited styles)
+ *   when we upgrade our CSS stylesheets to stylus/sass/etc.
+ * - stop using !important so much when CSS is more cleaned up
+ *
+ * Currently known HTML printing issues:
+ * - Neither Firefox nor Chrome (+ poss. others) print background colors
+ * - Page break rules are enforced but implemented uniquely
+ * - Chrome appears to have a hard time reading pseudo selectors on
+ *   stringed-together, dashed classes with wildcard attributes
+ *   (e.g., .ui-resizeable[style*="..."])
+ */
+/* PRINT-SPECIFIC HACKS --------------------------------------- */
+/*
+ * Temporary fix to enable Chrome print preview,
+ * given that Chrome cannot handle "position: fixed"
+ */
+#context-bar,
+div.top-menu-buttons,
+div.globalComments,
+div.commentsPane,
+.tb-title-icons,
+#topbar,
+#user-menu {
+  position: relative !important;
+}
+#help-menu {
+  position: relative !important;
+}
+/* PAGE DESIGN ELEMENTS ---------------------------------------
+ *  - align command prompts with title
+ *  - left-align title in plain font style
+ *  - conform to document-like style guidelines
+ *    (white legal paper style, professional, clean)
+ */
+div.databricks-notification-wrapper {
+  display: none;
+}
+/* display title, move content down from it */
+#topbar {
+  display: block !important;
+  height: auto !important;
+}
+/*  align full title and position content underneath */
+.tb-button {
+  display: none !important;
+}
+.tb-title-wrapper {
+  text-align: left !important;
+  margin: 0;
+  left: 0;
+  white-space: initial;
+  position: relative;
+}
+.tb-title-lang {
+  display: none !important;
+}
+#overallView {
+  /* align content left despite filebrowser popping up */
+  left: 0 !important;
+  overflow: visible !important;
+}
+div#sidebar {
+  display: none;
+}
+button.feedback-btn {
+  display: none;
+}
+div#debugHelper {
+  display: none;
+}
+div.dashboard-edit-view div.dashboard-layout-view-wrapper {
+  width: 850px;
+}
+div.dashboard-edit-view div.widget {
+  width: 800px !important;
+}
+div.dashboard-edit-view div.dashboard-side-menu {
+  display: none;
+}
+#content {
+  display: block !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+/*  show full command result stat
+    (e.g., "Command took 0.5s -- by admin at ...")  */
+.command-provenance {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+/*  hide web-specific UI components --------------- */
+/*      large web-specific nav components */
+#context-bar,
+div.top-menu-buttons,
+div.globalComments,
+div.commentsPane,
+.tb-title-icons,
+#tooltip,
+#filebrowser-popup,
+#searchpanel-popup,
+#user-menu {
+  display: none !important;
+}
+/*      icons, select menus and buttons */
+.submit-hint,
+a[class*="-button"],
+i[class*="icon-"],
+select {
+  display: none !important;
+}
+.results .plot-controls {
+  display: none !important;
+}
+/*      i[class*="icon-"] exceptions */
+a[class="cancel-query-button"] {
+  display: block !important;
+}
+/*      spinners, connection status  */
+.tb-status,
+.tb-status img {
+  display: none !important;
+}
+.command-result .spinner .spinner-wrapper {
+  /*    hide spinner icon, but keep "cancel" text */
+  display: none !important;
+}
+/*      scrollbars */
+html,
+body,
+.shellSessionView {
+  overflow: hidden !important;
+}
+/*      empty content  */
+textarea:empty {
+  display: none !important;
+}
+div.primaryPrompt {
+  display: none !important;
+}
+/*      dividers, borders  */
+div.divider {
+  display: none !important;
+}
+.command {
+  border: none !important;
+}
+/*      input prompts, placeholder text */
+*::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: tranparent;
+}
+*:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: tranparent;
+}
+*::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: tranparent;
+}
+*:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: tranparent;
+}
+/*  CSS effects (hover, focus, etc) --------------------------- */
+div.divider:hover {
+  display: none !important;
+}
+div.divider:hover .btn-circle {
+  display: none !important;
+}
+.command:hover,
+.command:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+/*
+ *  PAGE PROPERTIES -------------------------------------------
+ *  Ala MS Word, give page margin, counting existing spaces.
+ *  Fit images to page, horizontally
+ */
+@page {
+  /*  allow space from possible headers & footers */
+  margin: 2cm;
+}
+body {
+  max-width: 100% !important;
+}
+.ui-resizable {
+  max-height: 100%;
+  max-width: 100%;
+}
+/* Chrome fix for autosizing figures.
+ * If width and height are auto-set, Chrome Print will size them
+ * too small, whereas Firefox Print will size them appropriately! */
+.figure-results-and-comments .widget[style*="width: auto; height: auto"] {
+  /* Chrome appears to have a hard time reading stringed-together, dashed
+   * class names with pseudo selectors (e.g., .ui-resizeable[style*="..."]) */
+  width: 100% !important;
+  min-height: 300px;
+  /* this also needs to be set for height, or figure still appears small */
+}
+/* do not add the min-height: 300px; of white space if just an input widget */
+.widget.widget-input {
+  min-height: initial !important;
+}
+/* Following CSS for autosizing figures better only works for firefox
+   (but not for Chrome) */
+@-moz-document url-prefix() {
+  .ui-resizable {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+  }
+}
+/*  page break rules ------------------------------------------ */
+img,
+.figure,
+.ui-resizeable {
+  page-break-inside: avoid;
+}
+.previousPrompt {
+  page-break-inside: avoid;
+}
+.command .command-input .command-box {
+  page-break-before: avoid;
+}
+.results-and-comments {
+  page-break-before: avoid;
+}
+.results-and-comments.figure-results-and-comments {
+  page-break-before: auto;
+  page-break-inside: avoid;
+}
+.command .ui-resizeable {
+  page-break-inside: avoid;
+}
+/*  TABLE PROPERTIES ------------------------------------------- */
+.table-bordered {
+  border: 1px solid #ddd;
+}
+.results .table thead,
+.table thead {
+  background: #fafafa;
+}
+/*
+ *  Printing quirk with overflow property
+ *  - prevents table overflows but also truncates chart bottoms
+ */
+.command-result-wrapper .results {
+  overflow: hidden;
+}
+.results-table .inner {
+  overflow: hidden;
+}
+#content {
+  overflow-y: visible;
+}
+/*
+ * Last command view in session pane is truncated by a consistent margin
+ * within print media ONLY (despite applying same CSS for screen media
+ */
+.sessionPane .shell-top > div:last-child .results {
+  padding-bottom: 50px;
+  overflow: visible;
+}
