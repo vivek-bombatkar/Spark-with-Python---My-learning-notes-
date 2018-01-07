@@ -98,3 +98,20 @@ http://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf
 ```
 
 ```
+
+
+![explain_plan_physical](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/explain_plan_physical.jpg)
+
+![explain_plan_sql_vs_dataFrame](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/explain_plan_sql_vs_dataFrame.jpg)
+
+![queryOptimization_hint](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/queryOptimization_hint.jpg)
+
+![explain_plan_joins](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/explain_plan_joins.jpg)
+
+![explain_plan_joinHint](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/explain_plan_joinHint.jpg)
+
+![explain_plan_groupBy](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/explain_plan_groupBy.jpg)
+
+![partition_rePartition](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/partition_rePartition.jpg)
+
+![transformations_narrowVSwide](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/transformations_narrowVSwide.jpg)
