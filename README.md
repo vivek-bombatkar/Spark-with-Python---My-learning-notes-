@@ -100,6 +100,20 @@ http://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf
 
 ```
 
+###working-with-udfs-in-apache-spark
+https://blog.cloudera.com/blog/2017/02/working-with-udfs-in-apache-spark/
+```bash
+It’s important to understand the performance implications of Apache Spark’s UDF features.  Python UDFs for example (such as our CTOF function) result in data being serialized between the executor JVM and the Python interpreter running the UDF logic – this significantly reduces performance as compared to UDF implementations in Java or Scala.  Potential solutions to alleviate this serialization bottleneck include:
+
+Accessing a Hive UDF from PySpark as discussed in the previous section.  The Java UDF implementation is accessible directly by the executor JVM.  Note again that this approach only provides access to the UDF from the Apache Spark’s SQL query language.
+Making use of the approach also shown to access UDFs implemented in Java or Scala from PySpark, as we demonstrated using the previously defined Scala UDAF example.
+
+Another important component of Spark SQL to be aware of is the Catalyst query optimizer. Its capabilities are expanding with every release and can often provide dramatic performance improvements to Spark SQL queries; however, arbitrary UDF implementation code may not be well understood by Catalyst (although future features[3] which analyze bytecode are being considered to address this).  As such, using Apache Spark’s built-in SQL query functions will often lead to the best performance and should be the first approach considered whenever introducing a UDF can be avoided
+```
+
+###spark-functions-vs-udf-performance
+https://stackoverflow.com/questions/38296609/spark-functions-vs-udf-performance
+
 
 ![explain_plan_physical](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/explain_plan_physical.jpg)
 
