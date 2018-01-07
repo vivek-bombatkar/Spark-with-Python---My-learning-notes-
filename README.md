@@ -1,6 +1,7 @@
 # Apache Spark with Python
 
 ## My Spark practice notes.
+Learning is a continuous thing, though I am using Spark from quite a long time now I never noted down my practice exercise yet. With this repo, I am documenting it!
 
 ### spark_explain_plan
 [spark_explain_plan notebook](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/spark_explain_plan.ipynb)
