@@ -140,6 +140,10 @@ https://stackoverflow.com/questions/38296609/spark-functions-vs-udf-performance
 
 
 ### spark-submit
+> https://spark.apache.org/docs/2.2.0/submitting-applications.html
+> https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_running_spark_on_yarn.html
+> https://jaceklaskowski.gitbooks.io/mastering-apache-spark/yarn/
+
 
 ```
 ./bin/spark-submit \
@@ -159,29 +163,31 @@ application-jar: Path to a bundled jar including your application and all depend
 application-arguments: Arguments passed to the main method of your main class, if any
 ```
 
+#### java vs python code execution
 
 | java class | python script |
 | --- | --- |
-| --class <class path of java main application> | (at the end of spark-submit) <fully qualified path of the main python script> |
-
+| --class 'class path of java main application' | (at the end of spark-submit) 'fully qualified path of the main python script' |
+| ex. --class com.abc.project1.Main | /opt/src/project1/module1/main.py 'pass the parameters' |
+| --jars 'assembly jar (or “uber” jar) containing your code and its dependencies,  to be distributed with your application' | --py-files 'add .py, .zip or .egg files to be distributed with your application.' |
 
 #### <master-url>
+
 | local | local[n] | local[n,f] | yarn |
 | --- | --- | --- | --- | 
 | Run locally with one worker thread, no parallelism  | Run locally with K worker threads , set this to the number of cores. local[*] Run with as many worker threads as logical cores  |  Run Spark locally with n worker threads and F maxFailures |  Connect to a YARN cluster in client or cluster mode depending on the value of --deploy-mode. The cluster location will be found based on the HADOOP_CONF_DIR or YARN_CONF_DIR variable |
 
+#### YARN client vs cluster
+> Deploy modes are all about where the Spark driver runs.
 
-
-
-
+| YARN client | YARN cluster | 
+| --- | --- |
+| driver runs on the host where the job is submitted |  the driver runs in the ApplicationMaster on a cluster host chosen by YARN. | 
+| client that launches the application needs to be alive  | clientdoesn't need to continue running for the entire lifetime of the application |
+|  <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark-yarn-client.png" width="200" height="200" /> | <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/yarn-cluster.png" width="200" height="200" /> |
 
 
 ### Spark job monitoring
-
-
-### Spark application submit yarmn mode
-
-#### 
 
 
 ### Drivers and Executors
