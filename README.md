@@ -192,6 +192,7 @@ application-arguments: Arguments passed to the main method of your main class, i
 
 ### Drivers and Executors
 
+| --- | --- | 
 | Application | single job, a sequence of jobs, a long-running service issuing new commands as needed or an interactive exploration session.|
 |Spark Driver | driver is the process running the spark context. This driver is responsible for converting the application to a directed graph of individual steps to execute on the cluster. There is one driver per application.
 | Spark Application Master | responsible for negotiating resource requests made by the driver with YARN and finding a suitable set of hosts/containers in which to run the Spark applications. There is one Application Master per application. |
