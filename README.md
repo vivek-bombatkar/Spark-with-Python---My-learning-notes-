@@ -192,7 +192,7 @@ application-arguments: Arguments passed to the main method of your main class, i
 
 ### Drivers and Executors
 
-| IMP Concepts |  
+| IMP Concepts |   | 
 |--- |--- |
 | Application | single job, a sequence of jobs, a long-running service issuing new commands as needed or an interactive exploration session.|
 |Spark Driver | driver is the process running the spark context. 
