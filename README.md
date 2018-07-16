@@ -192,7 +192,7 @@ application-arguments: Arguments passed to the main method of your main class, i
 
 | Spark local mode | Spark Cluster mode |
 | --- | --- |
-|  <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark_local.png" width="200" height="200" /> | <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark_cluster.png" width="200" height="200" /> |
+|  <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark_local.png" width="400" height="400" /> | <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark_cluster.png" width="400" height="400" /> |
 
 ### Drivers and Executors
 
