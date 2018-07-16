@@ -143,7 +143,7 @@ https://stackoverflow.com/questions/38296609/spark-functions-vs-udf-performance
 > https://spark.apache.org/docs/2.2.0/submitting-applications.html
 > https://www.cloudera.com/documentation/enterprise/5-4-x/topics/cdh_ig_running_spark_on_yarn.html
 > https://jaceklaskowski.gitbooks.io/mastering-apache-spark/yarn/
-
+> https://blog.cloudera.com/blog/2014/05/apache-spark-resource-management-and-yarn-app-models/
 
 ```
 ./bin/spark-submit \
@@ -187,9 +187,22 @@ application-arguments: Arguments passed to the main method of your main class, i
 |  <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark-yarn-client.png" width="200" height="200" /> | <img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/yarn-cluster.png" width="200" height="200" /> |
 
 
-### Spark job monitoring
+<img src="https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/spark-yarn-table.png" width="500" height="300" />
 
 
 ### Drivers and Executors
 
+| Application | single job, a sequence of jobs, a long-running service issuing new commands as needed or an interactive exploration session.|
+|Spark Driver | driver is the process running the spark context. This driver is responsible for converting the application to a directed graph of individual steps to execute on the cluster. There is one driver per application.
+| Spark Application Master | responsible for negotiating resource requests made by the driver with YARN and finding a suitable set of hosts/containers in which to run the Spark applications. There is one Application Master per application. |
+| Spark Executor | A single JVM instance on a node that serves a single Spark application. An executor runs multiple tasks over its lifetime, and multiple tasks concurrently. A node may have several Spark executors and there are many nodes running Spark Executors for each client application. | 
+| Spark Task | represents a unit of work on a partition of a distributed dataset.  |
+
+
+### Spark job monitoring
+Spark History Server web UI
+
+
 ### 
+
+
