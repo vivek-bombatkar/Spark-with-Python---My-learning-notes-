@@ -137,3 +137,13 @@ https://stackoverflow.com/questions/38296609/spark-functions-vs-udf-performance
 ![partition_rePartition](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/partition_rePartition.jpg)
 
 ![transformations_narrowVSwide](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/transformations_narrowVSwide.jpg)
+
+
+### Spark job monitoring
+
+
+### Spark application submit yarmn mode
+
+### Drivers and Executors
+
+### 
