@@ -46,7 +46,7 @@ On the other hand, Catalyst is not designed to perform many of the common optimi
 For example, Spark doesn’t “own” any storage, so it does not build on-disk indexes, B-Trees, etc. (although its parquet file support, if used well, can get you some related features). Spark has been optimized for the volume, variety, etc. of big data – so, traditionally, it has not been designed to maintain and use statistics about a stable dataset. E.g., where an RDBMS might know that a specific filter will eliminate most records, and apply it early in the query, Spark 2.0 does not know this fact and won’t perform that optimization
 ```
 
-###Catalyst, the optimizer and Tungsten, the execution engine!
+### Catalyst, the optimizer and Tungsten, the execution engine!
 https://db-blog.web.cern.ch/blog/luca-canali/2016-09-spark-20-performance-improvements-investigated-flame-graphs
 ```bash
 *** Note in particular the steps marked with (*), they are optimized with who-stage code generation
@@ -55,7 +55,7 @@ Code generation is the key
 The key to understand the improved performance is with the new features in Spark 2.0 for whole-stage code generation. 
 ```
 
-###Deep dive into the new Tungsten execution engine
+### Deep dive into the new Tungsten execution engine
 https://databricks.com/blog/2016/05/23/apache-spark-as-a-compiler-joining-a-billion-rows-per-second-on-a-laptop.html
 ```bash
 1. The explain() function in the expression below has been extended for whole-stage code generation. In the explain output, when an operator has a star around it (*), whole-stage code generation is enabled. In the following case, Range, Filter, and the two Aggregates are both running with whole-stage code generation. Exchange, however, does not implement whole-stage code generation because it is sending data across the network.
@@ -73,7 +73,7 @@ spark.range(1000).filter("id > 100").selectExpr("sum(id)").explain()
 The idea here is that instead of processing data one row at a time, the engine batches multiples rows together in a columnar format, and each operator uses simple loops to iterate over data within a batch. Each next() call would thus return a batch of tuples, amortizing the cost of virtual function dispatches. These simple loops would also enable compilers and CPUs to execute more efficiently with the benefits mentioned earlier.
 ```
 
-###Catalyst Optimizer
+### Catalyst Optimizer
 https://data-flair.training/blogs/spark-sql-optimization-catalyst-optimizer/
 ```bash
 1. Fundamentals of Catalyst Optimizer
@@ -107,7 +107,7 @@ http://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf
 
 ```
 
-###working-with-udfs-in-apache-spark
+### working-with-udfs-in-apache-spark
 https://blog.cloudera.com/blog/2017/02/working-with-udfs-in-apache-spark/
 ```bash
 It’s important to understand the performance implications of Apache Spark’s UDF features.  Python UDFs for example (such as our CTOF function) result in data being serialized between the executor JVM and the Python interpreter running the UDF logic – this significantly reduces performance as compared to UDF implementations in Java or Scala.  Potential solutions to alleviate this serialization bottleneck include:
@@ -118,7 +118,7 @@ Making use of the approach also shown to access UDFs implemented in Java or Scal
 Another important component of Spark SQL to be aware of is the Catalyst query optimizer. Its capabilities are expanding with every release and can often provide dramatic performance improvements to Spark SQL queries; however, arbitrary UDF implementation code may not be well understood by Catalyst (although future features[3] which analyze bytecode are being considered to address this).  As such, using Apache Spark’s built-in SQL query functions will often lead to the best performance and should be the first approach considered whenever introducing a UDF can be avoided
 ```
 
-###spark-functions-vs-udf-performance
+### spark-functions-vs-udf-performance
 https://stackoverflow.com/questions/38296609/spark-functions-vs-udf-performance
 
 
@@ -139,10 +139,50 @@ https://stackoverflow.com/questions/38296609/spark-functions-vs-udf-performance
 ![transformations_narrowVSwide](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/transformations_narrowVSwide.jpg)
 
 
+### spark-submit
+
+```
+./bin/spark-submit \
+  --class <main-class> \
+  --master <master-url> \
+  --deploy-mode <deploy-mode> \
+  --conf <key>=<value> \
+  ... # other options
+  <application-jar> \
+  [application-arguments]
+
+--class: The entry point for your application (e.g. org.apache.spark.examples.SparkPi)
+--master: The master URL for the cluster (e.g. spark://23.195.26.187:7077)
+--deploy-mode: Whether to deploy your driver on the worker nodes (cluster) or locally as an external client (client) (default: client) †
+--conf: Arbitrary Spark configuration property in key=value format. For values that contain spaces wrap “key=value” in quotes (as shown).
+application-jar: Path to a bundled jar including your application and all dependencies. The URL must be globally visible inside of your cluster, for instance, an hdfs:// path or a file:// path that is present on all nodes.
+application-arguments: Arguments passed to the main method of your main class, if any
+```
+
+
+| java class | python script |
+| --- | --- |
+| --class <class path of java main application> | (at the end of spark-submit) <fully qualified path of the main python script> |
+
+
+#### <master-url>
+| local | local[n] | local[n,f] | yarn |
+| --- | --- | --- | --- | 
+| Run locally with one worker thread, no parallelism  | Run locally with K worker threads , set this to the number of cores. local[*] Run with as many worker threads as logical cores  |  Run Spark locally with n worker threads and F maxFailures |  Connect to a YARN cluster in client or cluster mode depending on the value of --deploy-mode. The cluster location will be found based on the HADOOP_CONF_DIR or YARN_CONF_DIR variable |
+
+
+
+
+
+
+
 ### Spark job monitoring
 
 
 ### Spark application submit yarmn mode
+
+#### 
+
 
 ### Drivers and Executors
 
