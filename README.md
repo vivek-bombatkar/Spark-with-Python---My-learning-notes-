@@ -192,10 +192,12 @@ application-arguments: Arguments passed to the main method of your main class, i
 
 ### Drivers and Executors
 
-
+| IMP Concepts |  
+|--- |--- |
 | Application | single job, a sequence of jobs, a long-running service issuing new commands as needed or an interactive exploration session.|
-| --- | --- |
-|Spark Driver | driver is the process running the spark context. This driver is responsible for converting the application to a directed graph of individual steps to execute on the cluster. There is one driver per application.
+|Spark Driver | driver is the process running the spark context. 
+This driver is responsible for converting the application to a directed graph of individual steps to execute on the cluster. 
+There is one driver per application.
 | Spark Application Master | responsible for negotiating resource requests made by the driver with YARN and finding a suitable set of hosts/containers in which to run the Spark applications. There is one Application Master per application. |
 | Spark Executor | A single JVM instance on a node that serves a single Spark application. An executor runs multiple tasks over its lifetime, and multiple tasks concurrently. A node may have several Spark executors and there are many nodes running Spark Executors for each client application. | 
 | Spark Task | represents a unit of work on a partition of a distributed dataset.  |
