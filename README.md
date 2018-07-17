@@ -206,10 +206,6 @@ application-arguments: Arguments passed to the main method of your main class, i
 | Spark Task | represents a unit of work on a partition of a distributed dataset.  |
 
 
-### Spark job monitoring
-Spark History Server web UI
-
-
 ### Dataframe opration on multiple columns
 > https://medium.com/@mrpowers/performing-operations-on-multiple-columns-in-a-pyspark-dataframe-36e97896c378
 
@@ -230,4 +226,26 @@ for col in data_frame.columns:
 df_res= data_frame.select(*(when(col(c) ... ,...).otherwise(col(c)).alias(c) for c in data_frame.columns ))
 
 ```
+
+
+
+### Spark job monitoring
+> https://databricks.com/blog/2015/06/22/understanding-your-spark-application-through-visualization.html
+
+Spark History Server web UI
+
+#### a. Event timeline of spark events
+  > The ability to view Spark events in a timeline is useful for identifying the bottlenecks in an application.
+ 
+ - Event timeline available in three levels  
+ 	- across all jobs  
+	- within one job  
+	- within one stage.  
+
+
+
+#### b. DAG 
+
+ 
+
 
