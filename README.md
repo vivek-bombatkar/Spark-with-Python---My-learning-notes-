@@ -211,6 +211,8 @@ Spark History Server web UI
 
 
 ### Dataframe opration on multiple columns
+> https://medium.com/@mrpowers/performing-operations-on-multiple-columns-in-a-pyspark-dataframe-36e97896c378
+
 > ***'Parsed Logical Plan' --> 'Analyzed Logical Plan' --> 'Optimized Logical Plan' --> 'Physical Plan'***
 
 > Spark is smart enough to optimized (in Physical Plan) the multiple operation done in for kind of loop on dataframe
