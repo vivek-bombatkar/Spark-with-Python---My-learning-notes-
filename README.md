@@ -212,7 +212,9 @@ Spark History Server web UI
 
 ### Dataframe opration on multiple columns
 > ***'Parsed Logical Plan' --> 'Analyzed Logical Plan' --> 'Optimized Logical Plan' --> 'Physical Plan'***
+
 > Spark is smart enough to optimized (in Physical Plan) the multiple operation done in for kind of loop on dataframe
+
 #### Below 2 code snipped will produce similler Physical Plan
 
 ```python
