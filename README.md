@@ -1,4 +1,6 @@
 # Apache Spark with Python
+> Follow me on,  [LinkedIn](https://www.linkedin.com/in/vivek-bombatkar/), [Github](https://github.com/vivek-bombatkar)  
+
 
 ## My Spark practice notes.
 Learning is a continuous thing, though I am using Spark from quite a long time now I never noted down my practice exercise yet. With this repo, I am documenting it!
