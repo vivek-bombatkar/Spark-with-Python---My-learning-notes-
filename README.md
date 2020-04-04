@@ -3,9 +3,9 @@
 
 
 ## My Spark practice notes.
-Learning is a continuous thing, though I am using Spark from quite a long time now I never noted down my practice exercise yet. With this repo, I am documenting it!
+Learning is a continuous process. Though I am using Spark from quite a long time now, I never noted down my practice exercise. With this repo, I am documenting it!
 
-I have used databricks free community cloude for this excercises, here the link: 
+I have used databricks free community cloude for this excercises, link: 
 https://community.cloud.databricks.com/login.html
 
 ![Spark2_Structured_Streaming_myLearning_infoGraphics](https://github.com/vivek-bombatkar/Spark-with-Python---My-learning-notes-/blob/master/pics/Spark2_Structured_Streaming_myLearning_infoGraphics.jpg)
